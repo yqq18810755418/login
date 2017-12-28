@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app='app'>
+	<div class="box">
+		
+	<div ng-controller='formcontroller'>
+		<button  ng-click="changeTab('log')" >登录</button>
+		<button ng-click="changeTab('reg')">注册</button>
+		<form ng-show='loginFlag' class="loginFlag">
+		<h1>登录</h1>
+			<div class="form-group">
+				<label for="" class="label">用户名</label>
+				<input type="text" placeholder="请输入用户名">	
+				<br><button class="login" ng-click='loginSubmit()'>提交</button>
+				<button class='reset'>清空</button>
+			</div>
+		</form>
+		<form ng-show='registFlag' class="registFlag">
+		<h1>注册</h1>
+			<div class="form-group">
+				<label for="username">用户名</label>
+				<input type="text" placeholder="请输入用户名" id='username' ng-model='username' required>{{username}}
+				
+			</div>
+		</form>
+		<div>
+			
+		</div>
+	</div>
+ </div>
+	<script  src='scripts/angular.min.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('formcontroller',function($scope){
+			$scope.username = 'yangqiqi';
+			$scope.loginFlag = true;
+			$scope.registFlag = false;
+			$scope.changeTab=function(flag){
+				if(flag =='log'){
+					$scope.loginFlag=true;
+					$scope.registFlag=false;
+				}else{
+					$scope.loginFlag=false;
+					$scope.registFlag=true;
+				}
+			}
+			$scope.loginSubmit=function(){
+				if(this.username=='yangqiqi'){
+					alert('您输入的正确')
+				}else{
+					alert("用户名不对")
+				}
+			}
+		})
+	</script>
+</body>
+</html>
